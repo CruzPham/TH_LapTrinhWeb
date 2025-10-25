@@ -1,0 +1,29 @@
+# Visual Studio / .NET
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+[Aa]rtifacts/
+[Bb]uild/
+[Ll]og/
+
+# ASP.NET
+App_Data/
+packages/
+packages.config
+*.log
+
+# IIS / publish
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+
+# Misc
+Thumbs.db
+*.tmp
+*.DS_Store

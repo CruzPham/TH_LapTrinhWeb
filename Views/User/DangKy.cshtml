@@ -1,0 +1,99 @@
+﻿@model PhamVanTung.SachOnline.Models.ViewModels.DangKyVM
+@{
+    ViewBag.Title = "Đăng ký thành viên";
+    Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
+}
+<style>
+    .panel-form {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .form-group .text-danger {
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+</style>
+
+<div class="panel panel-default panel-form">
+    <div class="panel-heading text-center"><h3><b>ĐĂNG KÝ THÀNH VIÊN</b></h3></div>
+    <div class="panel-body">
+        @using (Html.BeginForm("DangKy", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Họ tên:</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Tên đăng nhập:</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.TaiKhoan, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.TaiKhoan, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Mật khẩu:</label>
+                <div class="col-sm-8">
+                    @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Mật khẩu nhập lại:</label>
+                <div class="col-sm-8">
+                    @Html.PasswordFor(m => m.NhapLaiMatKhau, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.NhapLaiMatKhau, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Email:</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+                </div>
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Điện thoại:</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.DienThoai, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.DienThoai, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Ngày sinh:</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.NgaySinh, "{0:yyyy-MM-dd}",
+                       new { @class = "form-control", type = "date" })
+                </div>
+                @Html.ValidationMessageFor(m => m.NgaySinh, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Địa chỉ:</label>
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.DiaChi, "", new { @class = "text-danger col-sm-offset-4" })
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-4">
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                    <button type="reset" class="btn btn-default">Xóa Thông Tin</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

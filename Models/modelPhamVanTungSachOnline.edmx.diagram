@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="689466c054534ca3a5e4094ea1a3b12d" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="SachOnlineModel.CHITIETDATHANG" Width="2.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.CHUDE" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.DONDATHANG" Width="1.5" PointX="9" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.KHACHHANG" Width="1.5" PointX="12" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.NHAXUATBAN" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.SACH" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.TACGIA" Width="1.5" PointX="9" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.VIETSACH" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SachOnlineModel.FK_CT_DDH" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_CT_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_SACH_CHUDE" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_DDH_KH" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_SACH_NHAXUATBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_VIETSACH_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_VIETSACH_TG" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SachOnlineModel.ADMIN" Width="1.5" PointX="5.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,129 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Areas/PhamVanTung_Admin/Admin/admin.css" />
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+        }
+
+        /* ==== NAVBAR FIX ==== */
+        .navbar {
+            background-color: #222;
+            border-radius: 0;
+            border: none;
+            margin-bottom: 0;
+        }
+
+            .navbar .navbar-brand {
+                color: #fff !important;
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+
+            /* tất cả menu hiển thị trên cùng 1 dòng, bỏ gạch chân */
+            .navbar .navbar-nav {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+                .navbar .navbar-nav > li {
+                    float: none;
+                    display: inline-block;
+                }
+
+                    .navbar .navbar-nav > li > a {
+                        color: #eee !important;
+                        text-transform: uppercase;
+                        letter-spacing: .3px;
+                        text-decoration: none !important;
+                        padding: 15px 18px;
+                    }
+
+                        .navbar .navbar-nav > li > a:hover {
+                            color: #fff !important;
+                            background-color: #111 !important;
+                            text-decoration: none !important;
+                        }
+
+        .navbar-right {
+            margin-right: 0;
+        }
+
+        .admin-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 26px;
+            letter-spacing: .5px;
+            margin: 25px 0 10px;
+        }
+
+        .admin-sub {
+            text-align: center;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- ======= THANH MENU ======= -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "PhamVanTung_Admin" })">
+                    SachOnlineAdmin
+                </a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index","SACHes", new { area = "PhamVanTung_Admin" })">Quản lý sách</a></li>
+                <li><a href="@Url.Action("Index","CHUDEs", new { area = "PhamVanTung_Admin" })">Quản lý chủ đề</a></li>
+                <li><a href="@Url.Action("Index","NHAXUATBANs", new { area = "PhamVanTung_Admin" })">Quản lý nhà xuất bản</a></li>
+                <li><a href="@Url.Action("Index","KHACHHANGs", new { area = "PhamVanTung_Admin" })">Quản lý khách hàng</a></li>
+                <li><a href="@Url.Action("Index","DONDATHANGs", new { area = "PhamVanTung_Admin" })">Quản lý đơn hàng</a></li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="@Url.Action("Login", "Home", new { area = "PhamVanTung_Admin" })">
+                        <span class="glyphicon glyphicon-log-in"></span> Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ======= NỘI DUNG ======= -->
+    <div class="container">
+        @RenderSection("AdminHeader", required: false)
+        @RenderBody()
+    </div>
+
+    <footer>
+        ADMIN
+    </footer>
+
+    <!-- Script -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

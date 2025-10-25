@@ -1,0 +1,36 @@
+﻿@using PhamVanTung.SachOnline.Models
+@{
+    KHACHHANG kh = Session["TaiKhoan"] as KHACHHANG;
+}
+
+@if (kh == null)
+{
+    <li>
+        <a href="@Url.Action("DangKy", "User")">
+            <span class="glyphicon glyphicon-user"></span> Đăng ký
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("DangNhap", "User")">
+            <span class="glyphicon glyphicon-log-in"></span> Đăng nhập
+        </a>
+    </li>
+}
+else
+{
+    <li>
+        <a href="#">
+            <span class="glyphicon glyphicon-user"></span>
+            Xin chào: @kh.HoTen
+        </a>
+    </li>
+    <li>
+        @using (Html.BeginForm("DangXuat", "User", FormMethod.Post, new { id = "logoutForm", style = "display:inline;" }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-link navbar-btn" style="padding:0; color:inherit; text-decoration:none;">
+                <span class="glyphicon glyphicon-log-out"></span> Đăng xuất
+            </button>
+        }
+    </li>
+}

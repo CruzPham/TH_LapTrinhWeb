@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PhamVanTung.SachOnline.Models.DONDATHANG>
+@{
+    ViewBag.Title = "Quản lý Đơn hàng";
+    Layout = "~/Areas/PhamVanTung_Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="admin-title">QUẢN LÝ ĐƠN HÀNG</h2>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="info">
+        <tr>
+            <th>Mã ĐH</th>
+            <th>Mã KH</th>
+            <th>Ngày đặt</th>
+            <th>Tình trạng giao</th>
+            <th>Đã thanh toán</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaDonHang</td>
+                <td>@item.MaKH</td>
+                <td>@item.NgayDat?.ToShortDateString()</td>
+                <td>@(item.TinhTrangGiaoHang == true ? "Đã giao" : "Chưa giao")</td>
+                <td>@(item.DaThanhToan == true ? "✓" : "✗")</td>
+            </tr>
+        }
+    </tbody>
+</table>

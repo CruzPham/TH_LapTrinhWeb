@@ -1,0 +1,70 @@
+﻿@model PhamVanTung.SachOnline.Models.SACH
+@{
+    ViewBag.Title = "Chi tiết sách";
+    Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
+}
+
+<style>
+    .imgchitietsach {
+        max-width: 250px;
+        margin: 10px auto;
+        display: block;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+
+    .book-title {
+        color: red;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .book-info p {
+        margin: 5px 0;
+        font-size: 15px;
+    }
+
+    .book-price {
+        color: blue;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading book-title">
+        @Model.TenSach
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="@Url.Content("~/Images/" + (Model.AnhBia ?? "no-image.png"))"
+                     alt="@Model.TenSach"
+                     class="img-responsive imgchitietsach" />
+            </div>
+
+            <div class="col-md-8 book-info">
+                <p>@Html.Raw((Model.MoTa ?? "").Replace("\n", "<br/>"))</p>
+                <p><b>Ngày cập nhật:</b> @Html.FormatValue(Model.NgayCapNhat, "{0:dd/MM/yyyy}")</p>
+
+                @if (Model.GiaBan.HasValue)
+                {
+                    <p class="book-price">Giá bán: @Model.GiaBan.Value.ToString("#,##0") VND</p>
+                }
+                else
+                {
+                    <p class="text-muted">Liên hệ để biết giá</p>
+                }
+
+                <p>
+                    <a href="@Url.Action("ThemGioHang", "PhamVanTung_GioHang",
+                              new { iMaSach = Model.MaSach, strURL = Request.Url.ToString() })"
+                       class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span> Thêm vào giỏ
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@using PhamVanTung.SachOnline.Models
+@model List<GIOHANG>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
+}
+
+<h2 class="text-center">THÔNG TIN GIỎ HÀNG</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p class="text-center text-danger">Giỏ hàng của bạn đang trống.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead style="background:#ddd;">
+            <tr class="text-center">
+                <th>Mã sách</th>
+                <th>Tên sách</th>
+                <th>Ảnh bìa</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.iMaSach</td>
+                    <td>@item.sTenSach</td>
+                    <td class="text-center">
+                        <img src="@Url.Content("~/Images/" + item.sAnhBia)"
+                             alt="@item.sTenSach" style="width:90px;height:auto;" />
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("CapNhatGioHang", "PhamVanTung_GioHang", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("iMaSach", item.iMaSach)
+                            <input type="number" name="txtSoLuong" value="@item.iSoLuong" min="1" style="width:60px;" />
+                            <button type="submit" class="btn btn-default btn-sm">Cập nhật</button>
+                        }
+                    </td>
+                    <td class="text-right">@String.Format("{0:0,0}", item.dDonGia)</td>
+                    <td class="text-right">@String.Format("{0:0,0}", item.dThanhTien)</td>
+                    <td>
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { iMaSach = item.iMaSach }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right"><b>Tổng số lượng:</b></td>
+                <td>@Model.Sum(x => x.iSoLuong)</td>
+                <td class="text-right"><b>Tổng tiền:</b></td>
+                <td class="text-right"><b>@String.Format("{0:0,0} VNĐ", Model.Sum(x => x.dThanhTien))</b></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+<div class="text-right">
+    <a href="@Url.Action("DatHang","PhamVanTung_GioHang")" class="btn btn-primary">ĐẶT HÀNG</a>
+    <a href="@Url.Action("XoaTatCaGioHang","PhamVanTung_GioHang")" class="btn btn-danger">Xóa giỏ hàng</a>
+    <a href="@Url.Action("Index","PhamVanTungSachOnline")" class="btn btn-default">Tiếp tục mua</a>
+</div>

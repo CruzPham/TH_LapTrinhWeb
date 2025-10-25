@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PhamVanTung.SachOnline.Models.KHACHHANG>
+@{
+    ViewBag.Title = "Quản lý Khách hàng";
+    Layout = "~/Areas/PhamVanTung_Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="admin-title">QUẢN LÝ KHÁCH HÀNG</h2>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="info">
+        <tr>
+            <th>Mã KH</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Điện thoại</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaKH</td>
+                <td>@item.HoTen</td>
+                <td>@item.Email</td>
+                <td>@item.DiaChi</td>
+                <td>@item.DienThoai</td>
+            </tr>
+        }
+    </tbody>
+</table>

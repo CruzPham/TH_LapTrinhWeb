@@ -1,0 +1,33 @@
+﻿.navbar-inverse {
+    border-radius: 0;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #eee;
+        text-transform: uppercase;
+        letter-spacing: .3px;
+    }
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            color: #fff;
+            background: #222;
+        }
+
+.admin-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: .5px;
+    margin: 25px 0 10px;
+}
+
+.admin-sub {
+    text-align: center;
+    color: #777;
+    margin-bottom: 20px;
+}

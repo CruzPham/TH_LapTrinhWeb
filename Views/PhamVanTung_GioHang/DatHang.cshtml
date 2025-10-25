@@ -1,0 +1,97 @@
+﻿@using PhamVanTung.SachOnline.Models
+@model List<GIOHANG>
+
+@{
+    Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
+}
+
+<h2 class="text-center">THÔNG TIN ĐƠN HÀNG</h2>
+
+<table class="table table-bordered">
+    <tr style="background:#ddd;">
+        <th>Mã sách</th>
+        <th>Tên sách</th>
+        <th>Ảnh bìa</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaSach</td>
+            <td>@item.sTenSach</td>
+            <td><img src="@Url.Content("~/Images/" + item.sAnhBia)" width="90" /></td>
+            <td>@item.iSoLuong</td>
+            <td>@String.Format("{0:0,0}", item.dDonGia)</td>
+            <td>@String.Format("{0:0,0}", item.dThanhTien)</td>
+        </tr>
+    }
+
+    <tr>
+        <td colspan="5" class="text-right"><b>Tổng tiền:</b></td>
+        <td>@String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</td>
+    </tr>
+</table>
+
+<h2 class="text-center">THÔNG TIN ĐẶT HÀNG</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="max-width:820px;">
+
+        <div class="row" style="margin-bottom:6px;">
+            <div class="col-sm-4 text-right"><b>Họ tên khách hàng:</b></div>
+            <div class="col-sm-8">
+                @((ViewBag.KhachHang as KHACHHANG)?.HoTen)
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:6px;">
+            <div class="col-sm-4 text-right"><b>Địa chỉ:</b></div>
+            <div class="col-sm-8">
+                @((ViewBag.KhachHang as KHACHHANG)?.DiaChi)
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:6px;">
+            <div class="col-sm-4 text-right"><b>Điện thoại:</b></div>
+            <div class="col-sm-8">
+                @((ViewBag.KhachHang as KHACHHANG)?.DienThoai)
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:6px;">
+            <div class="col-sm-4 text-right"><b>Ngày đặt:</b></div>
+            <div class="col-sm-8">
+                @String.Format("{0:dd/MM/yyyy}", ViewBag.NgayDat)
+            </div>
+        </div>
+
+        <!-- Ngày giao + lỗi hiển thị bên phải -->
+        <div class="row" style="margin-bottom:10px;">
+            <div class="col-sm-4 text-right" style="padding-top:6px;">
+                <label for="NgayGiao"><b>Ngày giao:</b></label>
+            </div>
+            <div class="col-sm-4">
+                <input type="date"
+                       id="NgayGiao"
+                       name="NgayGiao"
+                       class="form-control"
+                       value="@(Request["NgayGiao"])"
+                       required />
+            </div>
+            <div class="col-sm-4" style="padding-top:6px;">
+                <span class="text-danger">@ViewBag.LoiNgayGiao</span>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin-top:10px;">
+            <button type="submit" class="btn btn-primary">ĐẶT HÀNG</button>
+            <a href="@Url.Action("GioHang","PhamVanTung_GioHang")" class="btn btn-default">TRỞ VỀ GIỎ HÀNG</a>
+        </div>
+    </div>
+}

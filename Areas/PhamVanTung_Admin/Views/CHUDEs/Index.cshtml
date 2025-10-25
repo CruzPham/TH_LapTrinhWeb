@@ -1,0 +1,24 @@
+﻿@model IEnumerable<PhamVanTung.SachOnline.Models.CHUDE>
+@{
+    ViewBag.Title = "Quản lý Chủ đề";
+    Layout = "~/Areas/PhamVanTung_Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2 class="admin-title">QUẢN LÝ CHỦ ĐỀ</h2>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="info">
+        <tr>
+            <th>Mã Chủ Đề</th>
+            <th>Tên Chủ Đề</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaCD</td>
+                <td>@item.TenChuDe</td>
+            </tr>
+        }
+    </tbody>
+</table>

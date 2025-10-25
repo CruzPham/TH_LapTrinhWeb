@@ -1,0 +1,42 @@
+﻿@* NavPartial.cshtml *@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("SachOnline", "Index", "SachOnline", null, new { @class = "navbar-brand" })
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("TRANG CHỦ", "Index", "SachOnline")</li>
+                <li>@Html.ActionLink("GIỚI THIỆU", "About", "SachOnline")</li>
+                <li>@Html.ActionLink("LIÊN HỆ", "Contact", "SachOnline")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SÁCH THEO CHỦ ĐỀ <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Ngoại ngữ</a></li>
+                        <li><a href="#">Công nghệ thông tin</a></li>
+                        <li><a href="#">Luật</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SÁCH THEO NXB <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">NXB Trẻ</a></li>
+                        <li><a href="#">NXB Thống kê</a></li>
+                        <li><a href="#">NXB Kim Đồng</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm sách" />
+                </div>
+                <button type="submit" class="btn btn-default">Tìm</button>
+            </form>
+        </div>
+    </div>
+</nav>

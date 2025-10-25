@@ -1,0 +1,817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E6DB90C-5435-453B-834C-AB8803C95B33}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhamVanTung.SachOnline</RootNamespace>
+    <AssemblyName>PhamVanTung.SachOnline</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44387</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\BaseAdminController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\CHUDEsController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\DONDATHANGsController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\KHACHHANGsController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\NHAXUATBANsController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\Controllers\SACHesController.cs" />
+    <Compile Include="Areas\PhamVanTung_Admin\PhamVanTung_AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PhamVanTungSachOnlineController.cs" />
+    <Compile Include="Controllers\PhamVanTung_GioHangController.cs" />
+    <Compile Include="Controllers\SachOnlineController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CookieLoginHelper.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Models\ADMIN.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETDATHANG.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHUDE.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DONDATHANG.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GIOHANG.cs" />
+    <Compile Include="Models\KHACHHANG.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelPhamVanTungSachOnline.Context.cs" />
+    <Compile Include="Models\modelPhamVanTungSachOnline.cs" />
+    <Compile Include="Models\modelPhamVanTungSachOnline.Designer.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelSachOnline.Context.cs" />
+    <Compile Include="Models\modelSachOnline.cs" />
+    <Compile Include="Models\modelSachOnline.Designer.cs">
+      <DependentUpon>modelSachOnline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelSachOnline1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHAXUATBAN.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SACH.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TACGIA.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VIETSACH.cs">
+      <DependentUpon>modelPhamVanTungSachOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModels\DangKyVM.cs" />
+    <Compile Include="Models\ViewModels\DangNhapVM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\PhamVanTung_Admin\Admin\admin.css" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\BCrypt.Net-Next.dll" />
+    <Content Include="bin\BCrypt.Net-Next.xml" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PagedList.dll" />
+    <Content Include="bin\PagedList.Mvc.dll" />
+    <Content Include="bin\PagedList.Mvc.xml" />
+    <Content Include="bin\PagedList.xml" />
+    <Content Include="bin\PhamVanTung.SachOnline.dll" />
+    <Content Include="bin\PhamVanTung.SachOnline.pdb" />
+    <Content Include="bin\System.Buffers.dll" />
+    <Content Include="bin\System.Buffers.xml" />
+    <Content Include="bin\System.Memory.dll" />
+    <Content Include="bin\System.Memory.xml" />
+    <Content Include="bin\System.Numerics.Vectors.dll" />
+    <Content Include="bin\System.Numerics.Vectors.xml" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\100X125.gif" />
+    <Content Include="Images\130318.jpg" />
+    <Content Include="Images\130499.jpg" />
+    <Content Include="Images\Cancel.jpg" />
+    <Content Include="Images\Delete.jpg" />
+    <Content Include="Images\Edit.png" />
+    <Content Include="Images\Giohang.gif" />
+    <Content Include="Images\Giohang_2.gif" />
+    <Content Include="Images\Gt_Thcb.jpg" />
+    <Content Include="Images\Hoccachhoclai.jpg" />
+    <Content Include="Images\Kt.jpg" />
+    <Content Include="Images\KT0001.jpg" />
+    <Content Include="Images\KT0002.jpg" />
+    <Content Include="Images\KT0003.jpg" />
+    <Content Include="Images\KT0004.jpg" />
+    <Content Include="Images\KT0005.jpg" />
+    <Content Include="Images\KT0006.jpg" />
+    <Content Include="Images\KT0007.jpg" />
+    <Content Include="Images\KT0008.jpg" />
+    <Content Include="Images\KT0009.jpg" />
+    <Content Include="Images\LTWeb2005.jpg" />
+    <Content Include="Images\momo.png" />
+    <Content Include="Images\mvc.jpg" />
+    <Content Include="Images\Oracle.png" />
+    <Content Include="Images\Save.jpg" />
+    <Content Include="Images\Slider\01.jpg" />
+    <Content Include="Images\Slider\02.jpg" />
+    <Content Include="Images\Slider\03.jpg" />
+    <Content Include="Images\Slider\04.jpg" />
+    <Content Include="Images\Slider\05.jpg" />
+    <Content Include="Images\Slider\06.jpg" />
+    <Content Include="Images\Sotien.gif" />
+    <Content Include="Images\TH001.jpg" />
+    <Content Include="Images\TH002.jpg" />
+    <Content Include="Images\TH003.jpg" />
+    <Content Include="Images\TH004.jpg" />
+    <Content Include="Images\TH005.jpg" />
+    <Content Include="Images\TH006.jpg" />
+    <Content Include="Images\TH007.jpg" />
+    <Content Include="Images\TH008.jpg" />
+    <Content Include="Images\THCB.jpg" />
+    <Content Include="Images\thu.jpg" />
+    <Content Include="Images\thu1.jpg" />
+    <Content Include="Images\TiengAnh01.jpg" />
+    <Content Include="Images\xehang.gif" />
+    <Content Include="Models\modelPhamVanTungSachOnline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>modelPhamVanTungSachOnline.Context1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\modelPhamVanTungSachOnline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>modelPhamVanTungSachOnline1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\modelSachOnline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>modelSachOnline.Context1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\modelSachOnline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>modelSachOnline1.cs</LastGenOutput>
+    </Content>
+    <Content Include="obj\Debug\PhamVanTung.SachOnline.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PhamVanTung.SachOnline.dll" />
+    <Content Include="obj\Debug\PhamVanTung.SachOnline.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.modelPhamVanTungSachOnline.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelPhamVanTungSachOnline.Context1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelPhamVanTungSachOnline.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelPhamVanTungSachOnline.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelPhamVanTungSachOnline1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelPhamVanTungSachOnline1.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelSachOnline.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelSachOnline.Context1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelSachOnline.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelSachOnline.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelSachOnline1.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.modelSachOnline1.Designer.cs.dll" />
+    <Content Include="packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll" />
+    <Content Include="packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.pdb" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\ico.png" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net20\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net20\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net35\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net35\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net462\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net462\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net5.0\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net5.0\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net6.0\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\net6.0\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\netstandard2.0\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\netstandard2.0\BCrypt.Net-Next.xml" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\netstandard2.1\BCrypt.Net-Next.dll" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\lib\netstandard2.1\BCrypt.Net-Next.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\build\Microsoft.Data.Entity.Build.Tasks.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\Icon.png" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net40\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\net45\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.SqlServer.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.SqlServer.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\lib\netstandard2.1\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\about_EntityFramework6.help.txt" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\any\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\win-x86\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net40\win-x86\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\any\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\win-x86\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\net45\win-x86\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.dll" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\build\Microsoft.Data.Entity.Build.Tasks.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\Icon.png" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net40\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net40\EntityFramework.SqlServer.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net40\EntityFramework.SqlServer.xml" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net40\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.xml" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\net45\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\netstandard2.1\EntityFramework.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\netstandard2.1\EntityFramework.SqlServer.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\netstandard2.1\EntityFramework.SqlServer.xml" />
+    <Content Include="packages\EntityFramework.6.5.1\lib\netstandard2.1\EntityFramework.xml" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\about_EntityFramework6.help.txt" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net40\any\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net40\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net40\win-arm64\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net40\win-arm64\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net40\win-x86\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net40\win-x86\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net45\any\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net45\any\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net45\win-arm64\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net45\win-arm64\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net45\win-x86\ef6.exe" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net45\win-x86\ef6.pdb" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net6.0\any\ef6.dll" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net6.0\any\ef6.pdb" />
+    <Content Include="packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll" />
+    <Content Include="packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\system.web.optimization.xml" />
+    <Content Include="packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="packages\Microsoft.Web.Infrastructure.2.0.0\NET.icon.png" />
+    <Content Include="packages\Microsoft.Web.Infrastructure.2.0.0\NET_Library_EULA_ENU.txt" />
+    <Content Include="packages\Modernizr.2.8.3\Content\Scripts\modernizr-2.8.3.js" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\net461\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\LICENSE.TXT" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\net45\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\net45\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard1.1\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard1.1\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard2.0\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard2.0\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Buffers.4.5.1\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Buffers.4.5.1\version.txt" />
+    <Content Include="packages\System.Memory.4.5.4\lib\net461\System.Memory.dll" />
+    <Content Include="packages\System.Memory.4.5.4\lib\net461\System.Memory.xml" />
+    <Content Include="packages\System.Memory.4.5.4\lib\netstandard1.1\System.Memory.dll" />
+    <Content Include="packages\System.Memory.4.5.4\lib\netstandard1.1\System.Memory.xml" />
+    <Content Include="packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll" />
+    <Content Include="packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.xml" />
+    <Content Include="packages\System.Memory.4.5.4\LICENSE.TXT" />
+    <Content Include="packages\System.Memory.4.5.4\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Memory.4.5.4\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Memory.4.5.4\version.txt" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\LICENSE.TXT" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\version.txt" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\LICENSE.TXT" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\ref\net461\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\ref\net461\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\ref\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\ref\netstandard1.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\ref\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\ref\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\version.txt" />
+    <Content Include="packages\WebGrease.1.6.0\lib\WebGrease.dll" />
+    <Content Include="packages\WebGrease.1.6.0\tools\WG.EXE" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\CHUDEs\Create.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\CHUDEs\Delete.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\CHUDEs\Details.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\CHUDEs\Edit.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\CHUDEs\Index.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\DONDATHANGs\Create.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\DONDATHANGs\Delete.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\DONDATHANGs\Details.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\DONDATHANGs\Edit.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\DONDATHANGs\Index.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\KHACHHANGs\Create.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\KHACHHANGs\Delete.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\KHACHHANGs\Details.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\KHACHHANGs\Edit.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\KHACHHANGs\Index.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\NHAXUATBANs\Create.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\NHAXUATBANs\Delete.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\NHAXUATBANs\Details.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\NHAXUATBANs\Edit.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\NHAXUATBANs\Index.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\SACHes\Create.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\SACHes\Delete.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\SACHes\Details.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\SACHes\Edit.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\SACHes\Index.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\web.config" />
+    <Content Include="Areas\PhamVanTung_Admin\Views\_ViewStart.cshtml" />
+    <Content Include="bin\PhamVanTung.SachOnline.dll.config" />
+    <EntityDeploy Include="Models\modelPhamVanTungSachOnline.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>modelPhamVanTungSachOnline1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\modelPhamVanTungSachOnline.edmx.diagram">
+      <DependentUpon>modelPhamVanTungSachOnline.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\modelSachOnline.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>modelSachOnline1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\modelSachOnline.edmx.diagram">
+      <DependentUpon>modelSachOnline.edmx</DependentUpon>
+    </Content>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelPhamVanTungSachOnline.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelPhamVanTungSachOnline.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelPhamVanTungSachOnline.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelSachOnline.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelSachOnline.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\modelSachOnline.ssdl" />
+    <Content Include="obj\Debug\PhamVanT.CBCB1722.Up2Date" />
+    <Content Include="obj\Debug\PhamVanTung.SachOnline.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\PhamVanTung.SachOnline.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Release\PhamVanTung.SachOnline.csproj.AssemblyReference.cache" />
+    <Content Include="packages\Antlr.3.5.0.2\.signature.p7s" />
+    <Content Include="packages\Antlr.3.5.0.2\Antlr.3.5.0.2.nupkg" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\.signature.p7s" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\BCrypt.Net-Next.4.0.3.nupkg" />
+    <Content Include="packages\BCrypt.Net-Next.4.0.3\readme.md" />
+    <Content Include="packages\EntityFramework.6.4.4\.signature.p7s" />
+    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.4.4\buildTransitive\netcoreapp3.0\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.4.4\build\EntityFramework.DefaultItems.props" />
+    <Content Include="packages\EntityFramework.6.4.4\build\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.4.4\build\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.4.4\build\netcoreapp3.0\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.4.4\build\netcoreapp3.0\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.4.4\content\net40\App.config.install.xdt" />
+    <Content Include="packages\EntityFramework.6.4.4\content\net40\App.config.transform" />
+    <Content Include="packages\EntityFramework.6.4.4\content\net40\Web.config.install.xdt" />
+    <Content Include="packages\EntityFramework.6.4.4\content\net40\Web.config.transform" />
+    <Content Include="packages\EntityFramework.6.4.4\EntityFramework.6.4.4.nupkg" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.PS2.psd1" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.PS2.psm1" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.psd1" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\EntityFramework6.psm1" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\init.ps1" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\install.ps1" />
+    <Content Include="packages\EntityFramework.6.4.4\tools\netcoreapp3.0\any\ef6.runtimeconfig.json" />
+    <Content Include="packages\EntityFramework.6.5.1\.signature.p7s" />
+    <Content Include="packages\EntityFramework.6.5.1\buildTransitive\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.5.1\buildTransitive\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.5.1\buildTransitive\net6.0\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.5.1\buildTransitive\net6.0\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.5.1\build\EntityFramework.DefaultItems.props" />
+    <Content Include="packages\EntityFramework.6.5.1\build\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.5.1\build\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.5.1\build\net6.0\EntityFramework.props" />
+    <Content Include="packages\EntityFramework.6.5.1\build\net6.0\EntityFramework.targets" />
+    <Content Include="packages\EntityFramework.6.5.1\content\net40\App.config.install.xdt" />
+    <Content Include="packages\EntityFramework.6.5.1\content\net40\App.config.transform" />
+    <Content Include="packages\EntityFramework.6.5.1\content\net40\Web.config.install.xdt" />
+    <Content Include="packages\EntityFramework.6.5.1\content\net40\Web.config.transform" />
+    <Content Include="packages\EntityFramework.6.5.1\EntityFramework.6.5.1.nupkg" />
+    <Content Include="packages\EntityFramework.6.5.1\README.md" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\EntityFramework6.PS2.psd1" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\EntityFramework6.PS2.psm1" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\EntityFramework6.psd1" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\EntityFramework6.psm1" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\init.ps1" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\install.ps1" />
+    <Content Include="packages\EntityFramework.6.5.1\tools\net6.0\any\ef6.runtimeconfig.json" />
+    <Content Include="packages\jQuery.3.7.0\.signature.p7s" />
+    <Content Include="packages\jQuery.3.7.0\jQuery.3.7.0.nupkg" />
+    <Content Include="packages\Microsoft.AspNet.Web.Optimization.1.1.3\.signature.p7s" />
+    <Content Include="packages\Microsoft.AspNet.Web.Optimization.1.1.3\Microsoft.AspNet.Web.Optimization.1.1.3.nupkg" />
+    <Content Include="packages\Microsoft.Web.Infrastructure.2.0.0\.signature.p7s" />
+    <Content Include="packages\Microsoft.Web.Infrastructure.2.0.0\Microsoft.Web.Infrastructure.2.0.0.nupkg" />
+    <Content Include="packages\Modernizr.2.8.3\.signature.p7s" />
+    <Content Include="packages\Modernizr.2.8.3\Modernizr.2.8.3.nupkg" />
+    <Content Include="packages\Modernizr.2.8.3\Tools\common.ps1" />
+    <Content Include="packages\Modernizr.2.8.3\Tools\install.ps1" />
+    <Content Include="packages\Modernizr.2.8.3\Tools\uninstall.ps1" />
+    <Content Include="packages\System.Buffers.4.5.1\.signature.p7s" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netcoreapp2.0\_._" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\uap10.0.16299\_._" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netcoreapp2.0\_._" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\uap10.0.16299\_._" />
+    <Content Include="packages\System.Buffers.4.5.1\System.Buffers.4.5.1.nupkg" />
+    <Content Include="packages\System.Memory.4.5.4\.signature.p7s" />
+    <Content Include="packages\System.Memory.4.5.4\lib\netcoreapp2.1\_._" />
+    <Content Include="packages\System.Memory.4.5.4\ref\netcoreapp2.1\_._" />
+    <Content Include="packages\System.Memory.4.5.4\System.Memory.4.5.4.nupkg" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\.signature.p7s" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\MonoAndroid10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\MonoTouch10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netcoreapp2.0\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\uap10.0.16299\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarinios10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarinmac20\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarintvos10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarinwatchos10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\MonoAndroid10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\MonoTouch10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netcoreapp2.0\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\uap10.0.16299\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarinios10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarinmac20\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarintvos10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarinwatchos10\_._" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\System.Numerics.Vectors.4.5.0.nupkg" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\.signature.p7s" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.4.5.3\System.Runtime.CompilerServices.Unsafe.4.5.3.nupkg" />
+    <Content Include="packages\WebGrease.1.6.0\.signature.p7s" />
+    <Content Include="packages\WebGrease.1.6.0\WebGrease.1.6.0.nupkg" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\PhamVanTung.Layout.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\Index.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\SliderPartial.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\NavPartial.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\ChuDePartial.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\NhaXuatBanPartial.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\SachBanNhieuPartial.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\FooterPartial.cshtml" />
+    <Content Include="Views\PhamVanTung_GioHang\DatHang.cshtml" />
+    <Content Include="Views\PhamVanTung_GioHang\GioHang.cshtml" />
+    <Content Include="Views\PhamVanTung_GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\PhamVanTung_GioHang\XacNhanDonHang.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\ChiTietSach.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\SachTheoChuDe.cshtml" />
+    <Content Include="Views\PhamVanTungSachOnline\SachTheoNXB.cshtml" />
+    <Content Include="Views\SachOnline\ChuDePartial.cshtml" />
+    <Content Include="Views\SachOnline\FooterPartial.cshtml" />
+    <Content Include="Views\SachOnline\Index.cshtml" />
+    <Content Include="Views\SachOnline\NavPartial.cshtml" />
+    <Content Include="Views\SachOnline\NhaXuatBanPartial.cshtml" />
+    <Content Include="Views\SachOnline\SachBanNhieuPartial.cshtml" />
+    <Content Include="Views\SachOnline\SliderPartial.cshtml" />
+    <Content Include="Views\User\DangKy.cshtml" />
+    <Content Include="Views\User\DangNhap.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Home\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\PhamVanTung_Admin\Data\" />
+    <Folder Include="Areas\PhamVanTung_Admin\Views\BaseAdmin\" />
+    <Folder Include="packages\bootstrap.5.2.3\" />
+    <Folder Include="packages\jQuery.3.7.0\Content\" />
+    <Folder Include="packages\jQuery.3.7.0\Tools\" />
+    <Folder Include="packages\jQuery.Validation.1.19.5\" />
+    <Folder Include="packages\Microsoft.AspNet.Mvc.5.2.9\" />
+    <Folder Include="packages\Microsoft.AspNet.Razor.3.2.9\" />
+    <Folder Include="packages\Microsoft.AspNet.WebPages.3.2.9\" />
+    <Folder Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\" />
+    <Folder Include="packages\Microsoft.jQuery.Unobtrusive.Validation.3.2.11\" />
+    <Folder Include="packages\Newtonsoft.Json.13.0.3\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets"
+          Condition="'$(VSToolsPath)' != '' and Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v17.0\WebApplications\Microsoft.WebApplication.targets"
+          Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v17.0\WebApplications\Microsoft.WebApplication.targets')" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51361</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44387/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

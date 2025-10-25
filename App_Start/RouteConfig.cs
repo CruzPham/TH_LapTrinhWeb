@@ -16,7 +16,8 @@ namespace PhamVanTung.SachOnline
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "PhamVanTungSachOnline", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "PhamVanTung.SachOnline.Controllers" }
             );
         }
     }

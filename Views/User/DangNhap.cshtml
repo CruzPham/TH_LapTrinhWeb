@@ -1,10 +1,11 @@
-﻿@model PhamVanTung.SachOnline.Models.ViewModels.DangNhapVM
+@model PhamVanTung.SachOnline.Models.ViewModels.DangNhapVM
 @{
-    ViewBag.Title = "Đăng nhập";
+    ViewBag.Title = "Dang nhap";
     Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
+    Model.ReturnUrl = Model.ReturnUrl ?? (ViewBag.ReturnUrl as string) ?? Url.Action("Index", "PhamVanTungSachOnline");
 }
 
-<h2>Đăng nhập</h2>
+<h2>Dang nhap</h2>
 
 @if (TempData["LoginSuccess"] != null)
 {
@@ -24,24 +25,30 @@
 @using (Html.BeginForm("DangNhap", "User", FormMethod.Post, new { @class = "form" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ReturnUrl)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.LabelFor(m => m.TaiKhoan, "Tên đăng nhập / Email")
-        @Html.TextBoxFor(m => m.TaiKhoan, new { @class = "form-control", placeholder = "Nhập tài khoản hoặc email", autocomplete = "username" })
+        @Html.LabelFor(m => m.TaiKhoan, "Tai khoan / Email")
+        @Html.TextBoxFor(m => m.TaiKhoan, new { @class = "form-control", placeholder = "Nhap tai khoan hoac email", autocomplete = "username" })
         @Html.ValidationMessageFor(m => m.TaiKhoan, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.MatKhau, "Mật khẩu")
-        @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control", placeholder = "Mật khẩu", autocomplete = "current-password" })
+        @Html.LabelFor(m => m.MatKhau, "Mat khau")
+        <input type="password"
+               id="MatKhau"
+               name="MatKhau"
+               class="form-control"
+               placeholder="Mat khau"
+               autocomplete="current-password"
+               value="@(Model.MatKhau ?? string.Empty)" />
         @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
     </div>
 
     <div class="checkbox">
-        <label>@Html.CheckBoxFor(m => m.RememberMe) Nhớ đăng nhập </label>
+        <label>@Html.CheckBoxFor(m => m.RememberMe) Nho dang nhap</label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    <button type="submit" class="btn btn-primary">Dang nhap</button>
 }
-

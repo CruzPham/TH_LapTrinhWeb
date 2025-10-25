@@ -1,0 +1,32 @@
+@model PhamVanTung.SachOnline.Models.KHACHHANG
+@{
+    var currentUrl = ViewBag.CurrentUrl as string ?? Url.Action("Index", "PhamVanTungSachOnline");
+}
+@if (Model == null)
+{
+    <li>
+        <a href="@Url.Action("DangKy", "User")">
+            <span class="glyphicon glyphicon-user"></span> Dang ky
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("DangNhap", "User", new { returnUrl = currentUrl })">
+            <span class="glyphicon glyphicon-log-in"></span> Dang nhap
+        </a>
+    </li>
+}
+else
+{
+    <li class="navbar-text">
+        <span class="glyphicon glyphicon-user"></span> Xin chao, @Model.HoTen
+    </li>
+    <li>
+        @using (Html.BeginForm("DangXuat", "User", FormMethod.Post, new { @class = "navbar-form logout-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-link navbar-btn">
+                <span class="glyphicon glyphicon-log-out"></span> Dang xuat
+            </button>
+        }
+    </li>
+}

@@ -1,0 +1,40 @@
+@{
+    Layout = null;
+    ViewBag.Title = "Admin Login";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/admin/css")
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1>LOGIN ADMIN</h1>
+            <p class="description">Dang nhap bang tai khoan quan tri de vao khu vuc Admin.</p>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="UserName">Username</label>
+                    <input type="text" id="UserName" name="UserName" placeholder="Type your username" tabindex="1" required />
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" id="Password" name="Password" placeholder="Type your password" tabindex="2" required />
+                </div>
+                <div class="helper">@ViewBag.ThongBao</div>
+                <div class="remember">
+                    <input type="checkbox" id="remember" name="remember" tabindex="3" />
+                    <label for="remember">Keep me logged in</label>
+                </div>
+                <button type="submit" tabindex="4">Login</button>
+            }
+            <a href="@Url.Action("Index", "PhamVanTungSachOnline")" class="back-link">Ve trang chu</a>
+        </div>
+    </div>
+</body>
+</html>

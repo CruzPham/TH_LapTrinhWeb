@@ -1,8 +1,8 @@
-﻿@{
+@{
     var sl = (int)(ViewBag.TongSoLuong ?? 0);
-    var tt = (decimal)(ViewBag.TongTien ?? 0m);
 }
-<a href="@Url.Action("GioHang","PhamVanTung_GioHang")" class="navbar-link">
-    <span class="glyphicon glyphicon-shopping-cart"></span>
-    Giỏ hàng <span class="badge">@sl</span>
-</a>
+<li>
+    <a href="@Url.Action("GioHang","PhamVanTung_GioHang")">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Gio hang (@sl)
+    </a>
+</li>

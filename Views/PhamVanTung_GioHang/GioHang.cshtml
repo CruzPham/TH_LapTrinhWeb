@@ -1,71 +1,78 @@
-﻿@using PhamVanTung.SachOnline.Models
+@using PhamVanTung.SachOnline.Models
 @model List<GIOHANG>
 @{
-    ViewBag.Title = "Giỏ hàng";
+    ViewBag.Title = "Gio hang";
     Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
 }
 
-<h2 class="text-center">THÔNG TIN GIỎ HÀNG</h2>
+<h2 class="text-center">THONG TIN GIO HANG</h2>
 
 @if (Model == null || !Model.Any())
 {
-    <p class="text-center text-danger">Giỏ hàng của bạn đang trống.</p>
+    <p class="text-center text-danger">Gio hang cua ban dang trong.</p>
 }
 else
 {
     <table class="table table-bordered">
-        <thead style="background:#ddd;">
-            <tr class="text-center">
-                <th>Mã sách</th>
-                <th>Tên sách</th>
-                <th>Ảnh bìa</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
-                <th></th>
+        <thead style="background-color:#9c9a14;color:#fff;font-size:15px;text-align:center;">
+            <tr>
+                <th>Ma Sach</th>
+                <th>Ten Sach</th>
+                <th>Anh Bia</th>
+                <th>So Luong</th>
+                <th>Don Gia</th>
+                <th>Thanh Tien</th>
+                <th>Thao tac</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.iMaSach</td>
+                    <td class="text-center">@item.iMaSach</td>
                     <td>@item.sTenSach</td>
                     <td class="text-center">
-                        <img src="@Url.Content("~/Images/" + item.sAnhBia)"
-                             alt="@item.sTenSach" style="width:90px;height:auto;" />
+                        <img src="@Url.Content("~/Images/" + item.sAnhBia)" alt="@item.sTenSach" style="width:100px;height:auto;" />
                     </td>
-                    <td>
-                        @using (Html.BeginForm("CapNhatGioHang", "PhamVanTung_GioHang", FormMethod.Post))
+                    <td class="text-center">
+                        @using (Html.BeginForm("CapNhatGioHang", "PhamVanTung_GioHang", FormMethod.Post, new { @class = "form-inline" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.Hidden("iMaSach", item.iMaSach)
-                            <input type="number" name="txtSoLuong" value="@item.iSoLuong" min="1" style="width:60px;" />
-                            <button type="submit" class="btn btn-default btn-sm">Cập nhật</button>
+                            <input type="number" name="txtSoLuong" value="@item.iSoLuong" min="1" class="form-control" style="width:80px;display:inline-block;background-color:#f4ff94;" />
+                            <button type="submit" class="btn btn-default btn-sm">Cap nhat</button>
                         }
                     </td>
-                    <td class="text-right">@String.Format("{0:0,0}", item.dDonGia)</td>
-                    <td class="text-right">@String.Format("{0:0,0}", item.dThanhTien)</td>
-                    <td>
-                        @Html.ActionLink("Xóa", "XoaGioHang", new { iMaSach = item.iMaSach }, new { @class = "btn btn-danger btn-sm" })
+                    <td class="text-right">@string.Format("{0:0,0}", item.dDonGia)</td>
+                    <td class="text-right">@string.Format("{0:0,0}", item.dThanhTien)</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Chi tiet", "ChiTietSach", "PhamVanTungSachOnline", new { id = item.iMaSach }, new { @class = "btn btn-link btn-xs" })
+                        @Html.ActionLink("Xoa", "XoaSPKhoiGioHang", new { iMaSach = item.iMaSach }, new { @class = "btn btn-link btn-xs text-danger" })
                     </td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-right"><b>Tổng số lượng:</b></td>
-                <td>@Model.Sum(x => x.iSoLuong)</td>
-                <td class="text-right"><b>Tổng tiền:</b></td>
-                <td class="text-right"><b>@String.Format("{0:0,0} VNĐ", Model.Sum(x => x.dThanhTien))</b></td>
-                <td></td>
+                <td colspan="4" class="text-right" style="font-weight:bold;color:red;">
+                    Tong so luong: @string.Format("{0:0,0}", ViewBag.TongSoLuong ?? 0)
+                </td>
+                <td colspan="2" class="text-right" style="font-weight:bold;color:red;">
+                    Tong tien: @string.Format("{0:0,0}", ViewBag.TongTien ?? 0m) VND
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Xoa gio hang", "XoaGioHang", null, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+            <tr style="font-weight:bold; color:blue; text-align:center;">
+                <td colspan="7">
+                    @Html.ActionLink("DAT HANG", "DatHang", "PhamVanTung_GioHang", null, new { @class = "btn btn-primary" })
+                </td>
             </tr>
         </tfoot>
     </table>
 }
 
 <div class="text-right">
-    <a href="@Url.Action("DatHang","PhamVanTung_GioHang")" class="btn btn-primary">ĐẶT HÀNG</a>
-    <a href="@Url.Action("XoaTatCaGioHang","PhamVanTung_GioHang")" class="btn btn-danger">Xóa giỏ hàng</a>
-    <a href="@Url.Action("Index","PhamVanTungSachOnline")" class="btn btn-default">Tiếp tục mua</a>
+    <a href="@Url.Action("Index","PhamVanTungSachOnline")" class="btn btn-default">Tiep tuc mua</a>
 </div>

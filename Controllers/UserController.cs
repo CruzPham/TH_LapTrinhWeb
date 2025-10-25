@@ -109,11 +109,12 @@ public class UserController : Controller
             return View(model);
         }
 
+        var hashedPassword = Sha256Base64(model.MatKhau);
         var kh = new KHACHHANG
         {
             HoTen = model.HoTen?.Trim(),
             TaiKhoan = model.TaiKhoan?.Trim(),
-            MatKhau = model.MatKhau?.Trim(),
+            MatKhau = hashedPassword,
             Email = model.Email?.Trim(),
             DienThoai = string.IsNullOrWhiteSpace(model.DienThoai) ? null : model.DienThoai.Trim(),
             DiaChi = string.IsNullOrWhiteSpace(model.DiaChi) ? null : model.DiaChi.Trim(),
@@ -130,34 +131,60 @@ public class UserController : Controller
     [HttpGet]
     public ActionResult DangNhap(string returnUrl = null)
     {
+        if (string.IsNullOrWhiteSpace(returnUrl))
+        {
+            returnUrl = Url.Action("Index", "PhamVanTungSachOnline");
+        }
+
         ViewBag.ReturnUrl = returnUrl;
-        return View();
+        var model = new DangNhapVM { ReturnUrl = returnUrl };
+
+        var savedUser = Request.Cookies["RememberUserName"];
+        var savedPass = Request.Cookies["RememberPassword"];
+        if (savedUser != null && savedPass != null)
+        {
+            model.TaiKhoan = savedUser.Value;
+            try
+            {
+                var decoded = Encoding.UTF8.GetString(Convert.FromBase64String(savedPass.Value));
+                model.MatKhau = decoded;
+            }
+            catch
+            {
+                model.MatKhau = string.Empty;
+            }
+            model.RememberMe = true;
+        }
+
+        return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult DangNhap(string TaiKhoan, string MatKhau, bool RememberMe = false, string returnUrl = null)
+    public ActionResult DangNhap(DangNhapVM model, string returnUrl = null)
     {
-        if (string.IsNullOrWhiteSpace(TaiKhoan) || string.IsNullOrWhiteSpace(MatKhau))
+        returnUrl = returnUrl ?? model.ReturnUrl;
+        if (!ModelState.IsValid)
         {
-            ModelState.AddModelError("", "Vui long nhap day du tai khoan va mat khau.");
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            model.ReturnUrl = returnUrl;
+            return View(model);
         }
 
-        var kh = db.KHACHHANGs.FirstOrDefault(x => x.TaiKhoan.ToLower() == TaiKhoan.Trim().ToLower());
-        if (kh == null || !VerifyPassword(MatKhau, kh.MatKhau))
+        var kh = db.KHACHHANGs.FirstOrDefault(x => x.TaiKhoan.ToLower() == model.TaiKhoan.Trim().ToLower());
+        if (kh == null || !VerifyPassword(model.MatKhau, kh.MatKhau))
         {
             ModelState.AddModelError("", "Tai khoan hoac mat khau khong dung.");
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            model.ReturnUrl = returnUrl;
+            return View(model);
         }
 
-        FormsAuthentication.SetAuthCookie(kh.TaiKhoan, RememberMe);
+        FormsAuthentication.SetAuthCookie(kh.TaiKhoan, model.RememberMe);
         Session["TaiKhoan"] = kh;
         Session["UserName"] = kh.TaiKhoan;
 
-        if (RememberMe)
+        if (model.RememberMe)
         {
             var cookie = new HttpCookie("RememberMe", kh.TaiKhoan)
             {
@@ -165,6 +192,25 @@ public class UserController : Controller
                 HttpOnly = true
             };
             Response.Cookies.Add(cookie);
+
+            Response.Cookies.Add(new HttpCookie("RememberUserName", model.TaiKhoan)
+            {
+                Expires = DateTime.Now.AddDays(7),
+                HttpOnly = false
+            });
+
+            var encodedPw = Convert.ToBase64String(Encoding.UTF8.GetBytes(model.MatKhau));
+            Response.Cookies.Add(new HttpCookie("RememberPassword", encodedPw)
+            {
+                Expires = DateTime.Now.AddDays(7),
+                HttpOnly = false
+            });
+        }
+        else
+        {
+            Response.Cookies.Add(new HttpCookie("RememberMe") { Expires = DateTime.Now.AddDays(-1) });
+            Response.Cookies.Add(new HttpCookie("RememberUserName") { Expires = DateTime.Now.AddDays(-1) });
+            Response.Cookies.Add(new HttpCookie("RememberPassword") { Expires = DateTime.Now.AddDays(-1) });
         }
 
         if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -228,4 +274,14 @@ public class UserController : Controller
 
         return View(kh);
     }
+
+    [ChildActionOnly]
+    public ActionResult LoginLogoutPartial()
+    {
+        var kh = Session["TaiKhoan"] as KHACHHANG;
+        ViewBag.CurrentUrl = Request?.RawUrl;
+        return PartialView("~/Views/User/LoginLogoutPartial.cshtml", kh);
+    }
 }
+
+

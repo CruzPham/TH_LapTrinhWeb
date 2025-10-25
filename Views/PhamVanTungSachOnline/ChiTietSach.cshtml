@@ -1,4 +1,4 @@
-﻿@model PhamVanTung.SachOnline.Models.SACH
+@model PhamVanTung.SachOnline.Models.SACH
 @{
     ViewBag.Title = "Chi tiết sách";
     Layout = "~/Views/Shared/PhamVanTung.Layout.cshtml";
@@ -59,7 +59,7 @@
 
                 <p>
                     <a href="@Url.Action("ThemGioHang", "PhamVanTung_GioHang",
-                              new { iMaSach = Model.MaSach, strURL = Request.Url.ToString() })"
+                              new { iMaSach = Model.MaSach, strURL = Request.RawUrl })"
                        class="btn btn-success">
                         <span class="glyphicon glyphicon-plus"></span> Thêm vào giỏ
                     </a>

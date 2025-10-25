@@ -1,0 +1,17 @@
+/* Basic reset to keep the admin login form consistent across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+
+:focus {
+    outline: none;
+}

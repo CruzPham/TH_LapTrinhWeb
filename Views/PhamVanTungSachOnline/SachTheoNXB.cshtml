@@ -1,4 +1,4 @@
-﻿@using PagedList.Mvc
+@using PagedList.Mvc
 @using PhamVanTung.SachOnline.Models
 @model PagedList.PagedList<SACH>
 
@@ -40,7 +40,7 @@
 
                         <p>
                             <a href="@Url.Action("ThemGioHang", "PhamVanTung_GioHang",
-                                   new { iMaSach = sach.MaSach, strURL = Request.Url.ToString() })"
+                                   new { iMaSach = sach.MaSach, strURL = Request.RawUrl })"
                                class="btn btn-warning">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
                             </a>

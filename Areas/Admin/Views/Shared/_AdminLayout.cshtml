@@ -1,0 +1,57 @@
+@using PhamVanTung.SachOnline.Models
+@{
+    var admin = Session["Admin"] as ADMIN;
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #f8f9fb;
+        }
+        .admin-wrapper {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navAdmin" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "Admin" })">SachOnlineAdmin</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navAdmin">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index", "Home", new { area = "Admin" })">QUAN LY SACH</a></li>
+                    <li><a href="#">QUAN LY CHU DE</a></li>
+                    <li><a href="#">QUAN LY NXB</a></li>
+                    <li><a href="#">QUAN LY KHACH HANG</a></li>
+                    <li><a href="#">QUAN LY DON HANG</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("Index", "PhamVanTungSachOnline")">Trang Public</a></li>
+                    <li class="navbar-text">Xin chao, @(admin?.HoTen ?? "Admin")</li>
+                    <li><a href="@Url.Action("Logout", "Home", new { area = "" })">Dang xuat</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container admin-wrapper">
+        @RenderBody()
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

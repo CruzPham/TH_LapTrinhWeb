@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using PhamVanTung.SachOnline.Models;
-using PhamVanTung.SachOnline.Services; // EmailService
+using PhamVanTung.SachOnline.Services;
 
 namespace PhamVanTung.SachOnline.Controllers
 {
@@ -12,7 +12,7 @@ namespace PhamVanTung.SachOnline.Controllers
     {
         private readonly SachOnlineEntities db = new SachOnlineEntities();
 
-        // ====== GIỎ HÀNG CƠ BẢN ======
+        // ===== CART HELPERS =====
         private List<GIOHANG> LayGioHang()
         {
             var lst = Session["GioHang"] as List<GIOHANG>;
@@ -24,7 +24,6 @@ namespace PhamVanTung.SachOnline.Controllers
             return lst;
         }
 
-        // Tổng số lượng & tổng tiền
         private int TongSoLuong()
         {
             var lst = Session["GioHang"] as List<GIOHANG>;
@@ -37,7 +36,7 @@ namespace PhamVanTung.SachOnline.Controllers
             return lst?.Sum(n => n.dThanhTien) ?? 0m;
         }
 
-        // Thêm sản phẩm vào giỏ, sau đó quay lại URL cũ (chỉ cho phép quay về URL nội bộ)
+        // ===== CART ACTIONS =====
         public ActionResult ThemGioHang(int iMaSach, string strURL)
         {
             var lst = LayGioHang();
@@ -54,12 +53,13 @@ namespace PhamVanTung.SachOnline.Controllers
             Session["GioHang"] = lst;
 
             if (!string.IsNullOrEmpty(strURL) && Url.IsLocalUrl(strURL))
+            {
                 return Redirect(strURL);
+            }
 
             return RedirectToAction("Index", "PhamVanTungSachOnline");
         }
 
-        // Trang giỏ hàng
         public ActionResult GioHang()
         {
             var lst = LayGioHang();
@@ -71,27 +71,28 @@ namespace PhamVanTung.SachOnline.Controllers
                 var kh = db.KHACHHANGs.SingleOrDefault(x => x.TaiKhoan == User.Identity.Name);
                 ViewBag.KhachHang = kh;
             }
+
             return View(lst);
         }
 
-        // Xóa 1 sản phẩm khỏi giỏ
-        public ActionResult XoaGioHang(int iMaSach)
+        public ActionResult XoaSPKhoiGioHang(int iMaSach)
         {
             var lst = LayGioHang();
             var sp = lst.SingleOrDefault(n => n.iMaSach == iMaSach);
-            if (sp != null) lst.Remove(sp);
-            Session["GioHang"] = lst;
+            if (sp != null)
+            {
+                lst.Remove(sp);
+                Session["GioHang"] = lst;
+            }
             return RedirectToAction("GioHang");
         }
 
-        // Xóa toàn bộ giỏ
-        public ActionResult XoaTatCaGioHang()
+        public ActionResult XoaGioHang()
         {
             Session["GioHang"] = null;
             return RedirectToAction("Index", "PhamVanTungSachOnline");
         }
 
-        // Cập nhật số lượng
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CapNhatGioHang(int iMaSach, FormCollection f)
@@ -100,9 +101,11 @@ namespace PhamVanTung.SachOnline.Controllers
             var sp = lst.SingleOrDefault(n => n.iMaSach == iMaSach);
             if (sp != null)
             {
-                int slMoi = sp.iSoLuong;
-                int.TryParse(f["txtSoLuong"], out slMoi);
-                sp.iSoLuong = Math.Max(1, slMoi);
+                var soLuongText = f["txtSoLuong"];
+                if (int.TryParse(soLuongText, out var slMoi) && slMoi > 0)
+                {
+                    sp.iSoLuong = slMoi;
+                }
             }
             Session["GioHang"] = lst;
             return RedirectToAction("GioHang");
@@ -110,7 +113,6 @@ namespace PhamVanTung.SachOnline.Controllers
 
         public ActionResult Index() => RedirectToAction("GioHang");
 
-        // ====== MINI CART (HEADER) ======
         [ChildActionOnly]
         public ActionResult GioHangPartial()
         {
@@ -120,12 +122,10 @@ namespace PhamVanTung.SachOnline.Controllers
             return PartialView("~/Views/PhamVanTung_GioHang/GioHangPartial.cshtml", lst);
         }
 
-        // ====== ĐẶT HÀNG ======
+        // ===== CHECKOUT =====
         [HttpGet]
-        [Authorize] // đảm bảo phải đăng nhập
         public ActionResult DatHang()
         {
-            // Chỉ redirect khi cả Session lẫn Identity đều chưa có
             if (Session["TaiKhoan"] == null && !User.Identity.IsAuthenticated)
             {
                 var returnUrl = Url.Action("DatHang", "PhamVanTung_GioHang");
@@ -134,7 +134,9 @@ namespace PhamVanTung.SachOnline.Controllers
 
             var lst = LayGioHang();
             if (lst == null || lst.Count == 0)
+            {
                 return RedirectToAction("GioHang");
+            }
 
             var kh = db.KHACHHANGs.SingleOrDefault(x => x.TaiKhoan == User.Identity.Name);
             if (kh == null)
@@ -150,7 +152,6 @@ namespace PhamVanTung.SachOnline.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DatHang(DateTime? NgayGiao)
         {
@@ -163,17 +164,19 @@ namespace PhamVanTung.SachOnline.Controllers
 
             var lst = LayGioHang();
             if (lst == null || lst.Count == 0)
+            {
                 return RedirectToAction("GioHang");
+            }
 
-            // Validate ngày giao và trả lỗi cạnh ô input
             string loiNgayGiao = null;
             if (!NgayGiao.HasValue)
-                loiNgayGiao = "Vui lòng chọn ngày giao hàng!";
+            {
+                loiNgayGiao = "Vui long chon ngay giao hang!";
+            }
             else if (NgayGiao.Value.Date < DateTime.Today)
-                loiNgayGiao = "Ngày giao phải từ hôm nay trở đi!";
-            // (tuỳ chọn) giới hạn không quá 60 ngày:
-            // else if (NgayGiao.Value.Date > DateTime.Today.AddDays(60))
-            //     loiNgayGiao = "Ngày giao tối đa trong 60 ngày tới.";
+            {
+                loiNgayGiao = "Ngay giao phai tu hom nay tro di!";
+            }
 
             if (loiNgayGiao != null)
             {
@@ -184,7 +187,6 @@ namespace PhamVanTung.SachOnline.Controllers
                 return View("DatHang", lst);
             }
 
-            // ===== Tạo đơn hàng =====
             var dh = new DONDATHANG
             {
                 MaKH = kh.MaKH,
@@ -192,9 +194,8 @@ namespace PhamVanTung.SachOnline.Controllers
                 NgayGiao = NgayGiao.Value.Date
             };
             db.DONDATHANGs.Add(dh);
-            db.SaveChanges(); // để có MaDonHang
+            db.SaveChanges();
 
-            // Lưu chi tiết
             foreach (var item in lst)
             {
                 db.CHITIETDATHANGs.Add(new CHITIETDATHANG
@@ -207,7 +208,6 @@ namespace PhamVanTung.SachOnline.Controllers
             }
             db.SaveChanges();
 
-            // Gửi email xác nhận (không chặn luồng nếu lỗi)
             try
             {
                 EmailService.SendOrderConfirmation(kh, dh, lst);
@@ -217,7 +217,6 @@ namespace PhamVanTung.SachOnline.Controllers
                 System.Diagnostics.Debug.WriteLine("Send mail error: " + ex.Message);
             }
 
-            // Clear giỏ và chuyển trang xác nhận
             Session["GioHang"] = null;
             TempData["DonHang"] = dh;
             TempData["KhachHang"] = kh;

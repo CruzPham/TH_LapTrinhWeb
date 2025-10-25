@@ -23,6 +23,10 @@ namespace PhamVanTung.SachOnline
                         "~/Content/bootstrap.min.css",
                         "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/admin/css").Include(
+                        "~/Content/Admin/reset.css",
+                        "~/Content/Admin/structure.css"));
+
         }
     }
 }
